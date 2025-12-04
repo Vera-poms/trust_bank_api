@@ -1,5 +1,12 @@
+[build]
+command = "echo 'No frontend build command required'"
+environment = { PYTHON_VERSION = "3.14" }
+
+[functions]
 directory = "netlify/functions"
 python_bundler = "zip"
+
+[[redirects]]
 from = "/api/*"
 to = "/.netlify/functions/api"
 status = 200
