@@ -6,3 +6,4 @@ cloudinary
 bcrypt
 pyjwt
 dnspython
+mangum

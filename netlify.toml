@@ -1,0 +1,5 @@
+directory = "netlify/functions"
+python_bundler = "zip"
+from = "/api/*"
+to = "/.netlify/functions/api"
+status = 200

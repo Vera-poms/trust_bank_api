@@ -2,6 +2,7 @@ from fastapi import FastAPI
 import cloudinary
 import os
 from routes.users import users_router
+from mangum import Mangum
 
 cloudinary.config(
     cloud_name = os.getenv("CLOUD_NAME"),
@@ -18,3 +19,5 @@ def home():
     }
 
 app.include_router(users_router)
+
+handler = Mangum(app)
