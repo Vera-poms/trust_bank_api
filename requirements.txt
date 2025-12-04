@@ -1,0 +1,8 @@
+fastapi[standard]
+python-multipart
+pymongo
+python-dotenv
+cloudinary
+bcrypt
+pyjwt
+dnspython
