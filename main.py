@@ -7,7 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://trust-bank-vera.netlify.app"
+    "https://trust-bank-vera.netlify.app",
+    "https://trust-bank-vera.netlify.app/",
 ]
 
 
@@ -22,7 +23,7 @@ app = FastAPI(title="Trust Bank API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
