@@ -2,7 +2,15 @@ from fastapi import FastAPI
 import cloudinary
 import os
 from routes.users import users_router
-from mangum import Mangum
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://trust-bank-vera.netlify.app/"
+]
+
+
 
 cloudinary.config(
     cloud_name = os.getenv("CLOUD_NAME"),
@@ -12,6 +20,14 @@ cloudinary.config(
 
 app = FastAPI(title="Trust Bank API")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/", tags=["Home"])
 def home():
     return {
@@ -20,4 +36,3 @@ def home():
 
 app.include_router(users_router)
 
-handler = Mangum(app)

@@ -4,8 +4,6 @@ from fastapi import HTTPException, status
 from pydantic import EmailStr
 from typing import Annotated
 import bcrypt
-import os
-import jwt
 from datetime import datetime, timedelta, timezone
 from bson.objectid import ObjectId
 from utils import replace_user_id, valid_id
@@ -52,14 +50,8 @@ def login_user(
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Wrong credentials!")
 
 
-    encoded_jwt = jwt.encode({
-            "id": str(user["_id"]),
-            "exp": datetime.now(tz=timezone.utc) + timedelta(minutes=60)
-        }, os.getenv("JWT_SECRET_KEY"), os.getenv("JWT_ALGORITHM"))
-
     return {
-        "message": "Login successful",
-        "access_token": encoded_jwt
+        "message": "Login successful"
     }
 
 @users_router.get("/users")
